@@ -1,31 +1,9 @@
-*.i90
-*.xlsx                                                                   
-*.lnk                                                            
-*.dat                                                                                                                                          
-*.txt                                                                                                                                                            
-*.code-workspace                                                         
-*.svg                                                                                                                   
-*.rar                                                                      
-*.sh                                                                     
 *.bat
-*.sln
-*.fdz
-*.u2d
-*.vfproj
-**/old
-*.3
-*.mod
-# *.xml
-# *.json
-.idea
-.vscode
-.vs
-*.bash_history
 demo_doc
 demo_md
+src_comment
 ford                                                                         
 ford-data                                                                    
-src/externals
 
 
 

@@ -4,8 +4,7 @@ module BasisFunctions
 
     use Parameters
     use ogpf
-    use misc, only: operator(.iseq.)
-    use functional, only: sort
+    use misc
     
     implicit none
         
@@ -186,7 +185,7 @@ module BasisFunctions
         pure elemental function FindSpan(me,u) result (span)
             class(basis), intent(in)    :: me
             real(wp), intent(in)        :: u        !< Given \( u \) value
-            integer                     :: span     !< Index of the corresponding knot span
+            integer                     :: span     !< Knot span index of \( u \) value
             !locals
             integer :: low, high    !< indices for binary search
             
@@ -221,7 +220,7 @@ module BasisFunctions
             class(basis), intent(in)    :: me
             real(wp), intent(in)        :: u        !< Given \( u \) value
             integer, intent(in)         :: i        !< Starting index for search 
-            integer                     :: mult     !< Index of the corresponding knot span
+            integer                     :: mult     !< Multiplicity of \( u \) value
             !locals
             integer :: j
             
@@ -239,7 +238,7 @@ module BasisFunctions
         pure elemental subroutine FindSpanMult(me,u,k,s)
             class(basis), intent(in)    :: me
             real(wp), intent(in)        :: u        !< Given \( u \) value
-            integer, intent(out)        :: k        !< Knot span of \( u \) value
+            integer, intent(out)        :: k        !< Knot span index of \( u \) value
             integer, intent(out)        :: s        !< Multiplicity of \( u \) value
             
             k = me%FindSpan(u)
@@ -403,7 +402,6 @@ module BasisFunctions
 
         !# {!module(basisfunctions)/type(basis)/DersBasisFuns.md!}
         pure subroutine DersBasisFuns(me,u,n,ders,span)
-            !* See [Algorithm A2.3](../page/01.fooiga/algos.html#algo-2-3), for more details
             class(basis), intent(in)            :: me
             real(wp),   intent(in)              :: u            !< Given \( u \) value
             integer,    intent(in)              :: n            !< Number of derivatives (\(n \leq p\))
@@ -588,9 +586,9 @@ module BasisFunctions
         !# {!module(basisfunctions)/type(basis)/InsertKnot.md!}
         pure subroutine InsertKnot(me,u,r,span)
             class(basis), intent(inout)     :: me
-            real(wp), intent(in)            :: u    ! knot value \(\bar{u}\)
-            integer, intent(in)             :: r    ! multiplicity of new knot value
-            integer, intent(in), optional   :: span ! knot span
+            real(wp), intent(in)            :: u    !< knot value \(\bar{u}\)
+            integer, intent(in)             :: r    !< multiplicity of new knot value
+            integer, intent(in), optional   :: span !< knot span
             !locals
             real(wp) :: kvtemp(0:me%m)
             integer  :: k
@@ -621,7 +619,7 @@ module BasisFunctions
             class(basis), intent(inout)     :: me
             integer, intent(in)             :: nk       !< Number of the knots
             real(wp), intent(in)            :: k(nk)    !< New knot vector 
-            integer, intent(in), optional   :: p        !< new degree
+            integer, intent(in), optional   :: p        !< New basis degree
             !locals
             ! real(wp), allocatable       :: uniq(:)
             integer                     :: i
@@ -691,7 +689,7 @@ module BasisFunctions
         !# {!module(basisfunctions)/type(basis)/ParLen.md!}
         pure function ParLen(me) result(len)
             class(basis), intent(in)    :: me
-            real(wp)                    :: len
+            real(wp)                    :: len !< Length of the parameter space
 
             len = me%kv(me%m) - me%kv(0)
         end function ParLen
@@ -735,11 +733,11 @@ module BasisFunctions
         !# {!module(basisfunctions)/type(basis)/get_nquad.md!}
         pure elemental function get_nquad(me,key,reduced_int,pdeq) result(ngp)
             class(basis),intent(in)  :: me
-            character(*),intent(in),optional :: key         !< The key defining whether the quadrature is over the Bezier segments or the patch  
+            character(*),intent(in),optional :: key         !< The key defining whether the quadrature is over the Bezier segments or over whole patch  
                                                             !< Valid inputs:  
                                                             !< - ` "elementwise" `     
                                                             !< - ` "patchwise" `  
-            logical,intent(in),optional :: reduced_int      !< Reduced integration flag, if true routine will return  
+            logical,intent(in),optional :: reduced_int      !< Reduced integration flag, if true, the routine will return  
                                                             !< the number of quadrature points for reduced integration  
             character(*),intent(in),optional :: pdeq        !< Internal name of the relevant partial differential equation  
                                                             !< Valid inputs:  
@@ -877,6 +875,7 @@ module BasisFunctions
     !***************************************************************************************************************************
     ! **PROCEDURES**  
     ! - bin                 (Fn)  
+    ! - sort                (Fn)  
     ! =>
 
         !# {!module(basisfunctions)/type(basis)/bin.md!}
@@ -909,6 +908,22 @@ module BasisFunctions
         end function bin
         ! .......................................................
     
+        
+        !< Recursive quicksort using binary tree pivot.
+        pure recursive function sort(x) result(res)
+            real(wp), dimension(:), intent(in) :: x !< Input array
+            real(wp), dimension(size(x)) :: res
+            real(wp), dimension(size(x)-1) :: rest
+            real(wp) :: pivot
+            if(size(x) > 1)then
+                pivot = head(split(x, 2))
+                rest = [split(x, 1), tail(split(x, 2))]
+                res = [sort(pack(rest, rest < pivot)), pivot, &
+                        sort(pack(rest, rest >= pivot))]
+            else
+                res = x
+            endif
+        end function sort
     !***************************************************************************************************************************
 
 end module BasisFunctions
