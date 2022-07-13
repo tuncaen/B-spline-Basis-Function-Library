@@ -1,0 +1,2717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="B-spline Basis Function Library">
+    
+    <meta name="author" content="Enes Tunca" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>basis &ndash; B-spline Basis Function Library </title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">B-spline Basis Function Library </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li><a href='..\page\index.html'>Documentation</a></li>
+      
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+        
+            </ul>
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>basis
+    <small>Derived Type</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title="<p>100.0% of total for derived types.</p>Including implementation: 610 statements, 100.0% of total for derived types.">29 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/BasisFunctions.f90"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/basisfunctions.f90.html'>BasisFunctions.f90</a></li>
+    
+     <li><a href='../module/basisfunctions.html'>BasisFunctions</a></li>
+    
+  
+     <li class="active">basis</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/basis.html#variable-p">p</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nk">nk</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-m">m</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nb">nb</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-n">n</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-kv">kv</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-unik">unik</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-mult">mult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-minreg">minreg</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-maxreg">maxreg</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nbez">nbez</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons-0">Constructor</a></h3></div>
+  <div id="cons-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../type/basis.html#interface-basis">basis</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-0">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findspan">FindSpan</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findmult">FindMult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findspanmult">FindSpanMult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-basisfuns">BasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-onebasisfun">OneBasisFun</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-allbasisfuns">AllBasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-dersbasisfuns">DersBasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-dersonebasisfun">DersOneBasisFun</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-insertknot">InsertKnot</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-updatebasis">UpdateBasis</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-bsegments">BSegments</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-parlen">ParLen</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-grevilleabscissae">GrevilleAbscissae</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-plot">Plot</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-get_nquad">get_nquad</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/basis.html#src">basis</a>
+  </div>
+</div>
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      <h2>type, public :: basis</h2>
+    <p><strong>Spline basis function class</strong>  </p>
+<p>Procedures assume basis with <strong>open knot vector</strong>  </p>
+    
+    
+    
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/basis.html#variable-p">p</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nk">nk</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-m">m</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nb">nb</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-n">n</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-kv">kv</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-unik">unik</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-mult">mult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-minreg">minreg</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-maxreg">maxreg</a>
+      
+      <a class="list-group-item" href="../type/basis.html#variable-nbez">nbez</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons-1">Constructor</a></h3></div>
+  <div id="cons-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../type/basis.html#interface-basis">basis</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-1">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findspan">FindSpan</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findmult">FindMult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-findspanmult">FindSpanMult</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-basisfuns">BasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-onebasisfun">OneBasisFun</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-allbasisfuns">AllBasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-dersbasisfuns">DersBasisFuns</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-dersonebasisfun">DersOneBasisFun</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-insertknot">InsertKnot</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-updatebasis">UpdateBasis</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-bsegments">BSegments</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-parlen">ParLen</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-grevilleabscissae">GrevilleAbscissae</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-plot">Plot</a>
+      
+      <a class="list-group-item" href="../type/basis.html#boundprocedure-get_nquad">get_nquad</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/basis.html#src">basis</a>
+  </div>
+</div>
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+    <section>
+    <h2>Components</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-p"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>p</strong></td><td></td><td></td><td><p>Polynomial degree <script type="math/tex">p</script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nk"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td></td><td></td><td><p>Number of the knots</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-m"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>m</strong></td><td></td><td></td><td><p>The highest index of the knots <code>( nk-1 )</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nb"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nb</strong></td><td></td><td></td><td><p>Number of basis functions</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-n"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td></td><td></td><td><p>The highest index of the basis functions <code>( nb-1 )</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kv"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>kv</strong>(:)</td><td></td><td></td><td><p><a href="../page/01.fooiga/eqns.html#openvec">Open knot vector</a><br>
+<code>kv(0:m)</code> <script type="math/tex"> = \left\{u_{0},..., u_{m}\right\} </script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-unik"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>unik</strong>(:)</td><td></td><td></td><td><p>Unique knot values</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mult"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>mult</strong>(:)</td><td></td><td></td><td><p>Multiplicity of each unique knot value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-minreg"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>minreg</strong></td><td></td><td></td><td><p>Minimum reqularity of the basis functions,<code>= me%p-max(me%mult(2:ubound(me%mult)-1)</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxreg"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>maxreg</strong></td><td></td><td></td><td><p>Maximum reqularity of the basis functions,<code>= me%p-min(me%mult(2:ubound(me%mult)-1)</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nbez"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nbez</strong></td><td></td><td></td><td><p>Number of elements with nonzero measure, i.e., number of Bezier segments</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+   <section>
+   <h2>Constructor</h2>
+     
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-basis"></span><h3>public interface <a href='../interface/basis.html'>basis</a>
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+    <p><strong>Spline basis constructor</strong>  </p>
+  </div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure function <a href='../proc/basisconstructor.html'>basisConstructor</a>(nk, p, k) result(me)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td><p>Number of the knots</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>p</strong></td><td><p>Polynomial degree <script type="math/tex">p</script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong>(nk)</td><td><p><a href="../page/01.fooiga/eqns.html#openvec">Open knot vector</a><br>
+<code>kv(0:m)</code> <script type="math/tex"> = \left\{u_{0},..., u_{m}\right\} </script>
+</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/basis.html'>basis</a>)
+  </small></h4>
+  <p>Spline basis object</p>
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+     
+   </section>
+   <br>
+    
+    
+    
+    
+     
+    <section>
+    <h2>Type-Bound Procedures</h2>
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-findspan"></span><h3>procedure, public :: <strong>FindSpan</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Knot span index search                                                                     </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure elemental function <a href='../proc/findspan.html'>FindSpan</a>(me, u) result(span)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>This procedure is an <em>elemental function</em> and does a <em>binary search</em> and return the <code>integer :: span</code> value, where <script type="math/tex">u</script> lies on. Note that, indexing starts with zero. If <script type="math/tex">u=u_{m}</script>, the index is <script type="math/tex">n (= m - p - 1)</script>, i.e., <script type="math/tex">u \in {(u_{n}, u_{nb}]} </script>, where "<code><a href="../type/basis.html#variable-nb">nb</a></code> <script type="math/tex">(= n+1)</script>" is number of control points of the <a href="../type/basis.html">univariate spline basis object</a>.</p><a href="../proc/findspan.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer
+  </small></h4>
+  <p>Knot span index of <script type="math/tex"> u </script> value</p>
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-findmult"></span><h3>procedure, public :: <strong>FindMult</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Knot multiplicity computation                                                              </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure elemental function <a href='../proc/findmult.html'>FindMult</a>(me, i, u) result(mult)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes the multiplicity of a knot</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>i</strong></td><td><p>Starting index for search </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer
+  </small></h4>
+  <p>Multiplicity of <script type="math/tex"> u </script> value</p>
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-findspanmult"></span><h3>procedure, public :: <strong>FindSpanMult</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Knot span and multiplicity computation                                                     </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure elemental subroutine <a href='../proc/findspanmult.html'>FindSpanMult</a>(me, u, k, s)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes the span and multiplicity of a knot </p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td><p>Knot span index of <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>s</strong></td><td><p>Multiplicity of <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-basisfuns"></span><h3>procedure, public :: <strong>BasisFuns</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of the non-vanishing basis functions                                           </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/basisfuns.html'>BasisFuns</a>(me, u, N, span)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes the nonvanishing basis functions based on Algorithm A2.2 in the NURBS Book <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.  </p><a href="../proc/basisfuns.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong>(0:me%p)</td><td><p>
+<script type="math/tex"> =  \{ N_{i-p,p}(u) \ldots N_{i,p}(u)\} </script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>span</strong></td><td><p>Knot span where <script type="math/tex"> u </script> lies on</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-onebasisfun"></span><h3>procedure, public :: <strong>OneBasisFun</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of a single basis function                                                     </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure elemental function <a href='../proc/onebasisfun.html'>OneBasisFun</a>(me, i, u) result(Nip)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes a single basis function, <script type="math/tex">N_{i,p}(u)</script>.  </p><a href="../proc/onebasisfun.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>i</strong></td><td><p>Basis function index   </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp)
+  </small></h4>
+  <p>
+<script type="math/tex"> N_{i,p}(u)</script>
+</p>
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-allbasisfuns"></span><h3>procedure, public :: <strong>AllBasisFuns</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of a all non-zero basis function of all degrees from <script type="math/tex">0</script> up to <script type="math/tex">p</script>         </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/allbasisfuns.html'>AllBasisFuns</a>(me, u, N, span)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes all non-zero basis function of all degrees from <script type="math/tex">0</script> up to <script type="math/tex">p</script>.  </p><a href="../proc/allbasisfuns.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>N</strong>(0:me%p,0:me%p)</td><td><p>
+<script type="math/tex; mode=display"> = \begin{bmatrix} {N_{i - p,0}(u)} & \cdots &{N_{i - p,p}(u)}\\
+ \vdots & \ddots & \vdots \\ {N_{i,0}(u)} & \cdots &{N_{i,p}(u)} \end{bmatrix} </script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>span</strong></td><td><p>Knot span where <script type="math/tex"> u </script> lies on</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-dersbasisfuns"></span><h3>procedure, public :: <strong>DersBasisFuns</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of the derivatives of the non-vanishing basis functions                        </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/dersbasisfuns.html'>DersBasisFuns</a>(me, u, n, ders, span)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes all nonzero basis functions and their derivatives based on Algorithm A2.3 in the NURBS Book [^1].  </p><a href="../proc/dersbasisfuns.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td><p>Number of derivatives (<script type="math/tex">n \leq p</script>)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ders</strong>(0:me%p,0:n)</td><td><p>
+<script type="math/tex; mode=display"> = \begin{bmatrix} {N_{i - p,p}^{(0)}(u)} & \cdots &{N_{i - p,p}^{(k)}(u)}\\
+ \vdots & \ddots & \vdots \\ {N_{i,p}^{(0)}(u)} & \cdots &{N_{i,p}^{(k)}(u)} \end{bmatrix} </script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>span</strong></td><td><p>Knot span where <script type="math/tex"> u </script> lies on</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-dersonebasisfun"></span><h3>procedure, public :: <strong>DersOneBasisFun</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of the the derivatives of a single basis function                              </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/dersonebasisfun.html'>DersOneBasisFun</a>(me, i, u, n, ders)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Computes a single basis function and its derivatives based on Algorithm A2.5 in the NURBS Book [^1]. </p><a href="../proc/dersonebasisfun.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>i</strong></td><td><p>Basis function index   </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>Given <script type="math/tex"> u </script> value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td><p>Number of derivatives (<script type="math/tex">n \leq p</script>)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ders</strong>(0:n)</td><td><p>
+<script type="math/tex"> = \{ N_{i,p}^{(0)}(u), \ldots, N_{i,p}^{(k)}(u) \} </script>
+</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-insertknot"></span><h3>procedure, public :: <strong>InsertKnot</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Knot insertion of a given knot into the knot vector                                        </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/insertknot.html'>InsertKnot</a>(me, u, r, span)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Insert knot <script type="math/tex">\bar{u}</script> into <script type="math/tex">{[u_{k}, u_{k+1})}</script>
+<script type="math/tex">r</script> times.  </p><a href="../proc/insertknot.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>u</strong></td><td><p>knot value <script type="math/tex">\bar{u}</script>
+</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r</strong></td><td><p>multiplicity of new knot value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>span</strong></td><td><p>knot span</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-updatebasis"></span><h3>procedure, public :: <strong>UpdateBasis</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Updating the basis (the same contents with constructor)                                    </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/updatebasis.html'>UpdateBasis</a>(me, nk, k, p)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Updates all component of the basis according to input knot vector.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td><p>Number of the knots</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong>(nk)</td><td><p>New knot vector </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>p</strong></td><td><p>New basis degree</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-bsegments"></span><h3>procedure, public :: <strong>BSegments</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of the segments' data of the basis                                             </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure subroutine <a href='../proc/bsegments.html'>BSegments</a>(me, nb, knots)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Returns the number of Bezier segments, <code>integer :: nb</code>, of the basis and the <code>real(wp) :: knots(:)</code> array containing the unique values of the knot vector.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nb</strong></td><td><p>Number of Bezier segments</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>knots</strong>(:)</td><td><p>The unique knot values</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-parlen"></span><h3>procedure, public :: <strong>ParLen</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Get the length of parameter space                                                          </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure function <a href='../proc/parlen.html'>ParLen</a>(me) result(len)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Return the length of the parameter space, i.e., <script type="math/tex">u_{m}-u_{0}</script>, where <script type="math/tex">m</script> is the highest index of the knot vector.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp)
+  </small></h4>
+  <p>Length of the parameter space</p>
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-grevilleabscissae"></span><h3>procedure, public :: <strong>GrevilleAbscissae</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Computation of the Greville abscissae                                                      </strong>  </p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure function <a href='../proc/grevilleabscissae.html'>GrevilleAbscissae</a>(me, dsc) result(pt)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Return the Greville abscissae, <script type="math/tex">\{u_i\}</script>, of the knot vector,  </p><a href="../proc/grevilleabscissae.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>dsc</strong></td><td><p>If true, then the Greville abscissae are modified 
+ by shifting the boundary points into the domain</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp)
+  (0:me%n)</small></h4>
+  <p>The array containing Greville abscissae</p>
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-plot"></span><h3>procedure, public :: <strong>Plot</strong>  => <a href='../proc/plotbasisfunc.html'>PlotBasisFunc</a> 
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Plot basis functions                                                                       </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private subroutine <a href='../proc/plotbasisfunc.html'>PlotBasisFunc</a>(me, first, last, d, plotRes, title, work, fname, terminal, showPlot)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>This subroutine plots the basis functions or their <script type="math/tex">d</script>th order derivatives having index from <code>first</code> to <code>last</code> by computing at interpolation points defined by <code>plotRes</code>, and print the image file into "<code>|cwd|</code>/data/<code>work</code>/<code>fname</code>.ext" if the workspace <code>work</code> is presented, "<code>|cwd|</code>/data/img/<code>fname</code>.ext" if else. Plotting requires <a href="http://gnuplot.sourceforge.net/" id="GNUPlot" target="_blank">GNUPlot</a> installed on your computer. The input parameter <code>terminal</code> set the output terminal of GNUPlot. </p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>first</strong></td><td><p>First index to be plotted</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>last</strong></td><td><p>Last index to be plotted</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>d</strong></td><td><p>Derivatives degree</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>plotRes</strong></td><td><p>Resolution of the calculation, Default = 100</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>title</strong></td><td><p>Title of the graph, Default = "Basis functions"</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>work</strong></td><td><p>Current work name to create folder</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>fname</strong></td><td><p>Filename of the *.png output, if <em>GNUPlot</em> terminal is <code>png</code>. Default = "BasisFunctions"</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>terminal</strong></td><td><p><em>GNUPlot</em> terminal, Default = <code>wxt</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>showPlot</strong></td><td><p>Key to open created <code>png</code> files</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_nquad"></span><h3>procedure, public :: <strong>get_nquad</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p><strong>Get the number of quadrature points                                                        </strong></p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+        
+          
+    
+    <h3>
+private pure elemental function <a href='../proc/get_nquad.html'>get_nquad</a>(me, key, reduced_int, pdeq) result(ngp)
+    
+    
+   
+</h3>
+    
+
+
+
+
+
+
+
+<p>Return the number of quadrature points for a successive integration</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/basis.html'>basis</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>key</strong></td><td><p>The key defining whether the quadrature is over the Bezier segments or over whole patch<br>
+ Valid inputs:<br>
+ - <code>"elementwise"</code>   <br>
+ - <code>"patchwise"</code>  </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>reduced_int</strong></td><td><p>Reduced integration flag, if true, the routine will return<br>
+ the number of quadrature points for reduced integration  </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pdeq</strong></td><td><p>Internal name of the relevant partial differential equation<br>
+ Valid inputs:<br>
+ - <code>"Timoshenko"</code><br>
+ - <code>"Mindlin"</code><br>
+ - <code>"Shell"</code>  </p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer
+  </small></h4>
+  
+    
+
+        
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+    </section>
+    
+    
+    
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>    <span class="k">type</span> <span class="kd">::</span> <span class="n">basis</span>
+        <span class="c">!&lt;  </span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">p</span>       <span class="c">!&lt; Polynomial degree \(p\)</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">nk</span>      <span class="c">!&lt; Number of the knots</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">m</span>       <span class="c">!&lt; The highest index of the knots ` ( nk-1 ) `</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">nb</span>      <span class="c">!&lt; Number of basis functions</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">n</span>       <span class="c">!&lt; The highest index of the basis functions ` ( nb-1 ) `</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>   <span class="k">allocatable</span> <span class="kd">::</span>  <span class="n">kv</span><span class="p">(:)</span>   <span class="c">!&lt; [Open knot vector](../page/01.fooiga/eqns.html#openvec)  </span>
+                                            <span class="c">!&lt; ` kv(0:m) ` \( = \left\{u_{0},..., u_{m}\right\} \)</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>   <span class="k">allocatable</span> <span class="kd">::</span>  <span class="n">unik</span><span class="p">(:)</span> <span class="c">!&lt; Unique knot values</span>
+        <span class="kt">integer</span><span class="p">,</span>    <span class="k">allocatable</span> <span class="kd">::</span>  <span class="n">mult</span><span class="p">(:)</span> <span class="c">!&lt; Multiplicity of each unique knot value</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">minreg</span>  <span class="c">!&lt; Minimum reqularity of the basis functions,` = me%p-max(me%mult(2:ubound(me%mult)-1)  `</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">maxreg</span>  <span class="c">!&lt; Maximum reqularity of the basis functions,` = me%p-min(me%mult(2:ubound(me%mult)-1)  `</span>
+        <span class="kt">integer</span>                 <span class="kd">::</span>  <span class="n">nbez</span>    <span class="c">!&lt; Number of elements with nonzero measure, i.e., number of Bezier segments</span>
+    <span class="k">contains</span>
+        <span class="c">!&lt; Procedures assume basis with **open knot vector**  </span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">FindSpan</span>                 <span class="c">!&lt; **Knot span index search                                                                     **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">FindMult</span>                 <span class="c">!&lt; **Knot multiplicity computation                                                              **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">FindSpanMult</span>             <span class="c">!&lt; **Knot span and multiplicity computation                                                     **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">BasisFuns</span>                <span class="c">!&lt; **Computation of the non-vanishing basis functions                                           **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">OneBasisFun</span>              <span class="c">!&lt; **Computation of a single basis function                                                     **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">AllBasisFuns</span>             <span class="c">!&lt; **Computation of a all non-zero basis function of all degrees from \(0\) up to \(p\)         **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">DersBasisFuns</span>            <span class="c">!&lt; **Computation of the derivatives of the non-vanishing basis functions                        **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">DersOneBasisFun</span>          <span class="c">!&lt; **Computation of the the derivatives of a single basis function                              **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">InsertKnot</span>               <span class="c">!&lt; **Knot insertion of a given knot into the knot vector                                        **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">UpdateBasis</span>              <span class="c">!&lt; **Updating the basis (the same contents with constructor)                                    **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">BSegments</span>                <span class="c">!&lt; **Computation of the segments&#39; data of the basis                                             **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">ParLen</span>                   <span class="c">!&lt; **Get the length of parameter space                                                          **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">GrevilleAbscissae</span>        <span class="c">!&lt; **Computation of the Greville abscissae                                                      **  </span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">Plot</span> <span class="o">=&gt;</span> <span class="n">PlotBasisFunc</span>    <span class="c">!&lt; **Plot basis functions                                                                       **</span>
+        <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span>   <span class="kd">::</span> <span class="n">get_nquad</span>                <span class="c">!&lt; **Get the number of quadrature points                                                        **</span>
+    <span class="k">end type </span><span class="n">basis</span>
+</pre></div>
+
+    </section>
+    
+    
+    </div>
+  </div>
+
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2022 
+                                          </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> B-spline Basis Function Library was developed by Enes Tunca</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>

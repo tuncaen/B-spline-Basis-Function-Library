@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="B-spline Basis Function Library">
+    
+    <meta name="author" content="Enes Tunca" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>Degree Operations &ndash; B-spline Basis Function Library</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">B-spline Basis Function Library </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li><a href='..\page\index.html'>Documentation</a></li>
+      
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+        
+            </ul>
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  <div class="row">
+    <h1>Degree Operations</h1>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="well well-sm" style="min-height: 40px;">
+      <ul class="list-inline" style="margin-bottom:0px; display:inline">
+         
+         
+<!--
+        
+-->
+      </ul>
+        <ol class="breadcrumb in-well">
+      
+         <li><a href='..\page\index.html'>Documentation</a></li>
+      
+         <li class="active">Degree Operations</li>
+      </ol>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-9 col-md-push-3" id='text'>
+      <h2 id="test-cases-for-the-procedure-changedegree">Test Cases for the Procedure <code>ChangeDegree</code></h2>
+<p><strong>1)</strong> The first test of the degree changing algorithms is degree elevation of a curve that is given in <em>The NURBS Book</em>'s <strong>Figure 5.37</strong>.</p>
+<p><img alt="Figure 5.37" src="..\media/img/img_F5.37.png#large"></p>
+<p>The following program tests the knot removal algorithm for curves by reproducing the case demonstrated above.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_curve_degree_elevate</span>
+
+<span class="k">use </span><span class="n">splines</span>
+<span class="k">use </span><span class="n">points</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">wp</span>  <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">307</span><span class="p">)</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">T</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">F</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">c4</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cp</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c">! CPs are relatively exact</span>
+<span class="n">cp</span><span class="p">(:)%</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.010_wp</span><span class="p">,</span> <span class="mf">0.867_wp</span><span class="p">,</span> <span class="mf">4.153_wp</span><span class="p">,</span> <span class="mf">5.202_wp</span><span class="p">,</span> <span class="mf">8.659_wp</span><span class="p">,</span> <span class="mf">9.516_wp</span><span class="p">]</span>
+<span class="n">cp</span><span class="p">(:)%</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.000_wp</span><span class="p">,</span> <span class="mf">5.874_wp</span><span class="p">,</span> <span class="mf">5.817_wp</span><span class="p">,</span> <span class="mf">2.108_wp</span><span class="p">,</span> <span class="mf">2.372_wp</span><span class="p">,</span> <span class="mf">7.360_wp</span><span class="p">]</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.40_wp</span><span class="p">,</span> <span class="mf">0.70_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">]</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">kXi</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="n">cp</span><span class="p">)</span>
+
+<span class="k">call </span><span class="n">c</span><span class="p">%</span><span class="n">plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>                              <span class="p">&amp;</span>
+                <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37a&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(a). The original cubic curve defined over &amp;</span>
+<span class="s2">                                     &amp;  \\{0, 0, 0, 0, 0.4, 0.7, 1, 1, 1, 1\\}.&quot;</span>      <span class="p">)</span>
+
+<span class="n">c2</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">call </span><span class="n">c2</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">call </span><span class="n">plot</span><span class="p">(</span>  <span class="n">me</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">c2</span><span class="p">],</span> <span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>            <span class="p">&amp;</span>
+            <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37b&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(b). The degree is elevated by one.&quot;</span>      <span class="p">)</span>
+
+<span class="n">c3</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">call </span><span class="n">c3</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">call </span><span class="n">plot</span><span class="p">(</span>  <span class="n">me</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">c3</span><span class="p">],</span> <span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>            <span class="p">&amp;</span>
+            <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37c&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(c). The degree is elevated by two.&quot;</span>      <span class="p">)</span>
+
+<span class="n">c4</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">call </span><span class="n">c4</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">call </span><span class="n">plot</span><span class="p">(</span>  <span class="n">me</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">c4</span><span class="p">],</span> <span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>            <span class="p">&amp;</span>
+            <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37d&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(d). the degree is elevated by four.&quot;</span>      <span class="p">)</span>
+
+
+<span class="k">call </span><span class="n">c</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span><span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37a2&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(a-2). The original bases&quot;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">c2</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span><span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37b2&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(b-2). t_{u}=+1&quot;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">c3</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span><span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37c2&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(c-2). t_{u}=+2&quot;</span><span class="p">)</span>
+<span class="k">call </span><span class="n">c4</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span><span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.37d2&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(d-2). t_{u}=+4&quot;</span><span class="p">)</span>
+
+<span class="k">pause</span>
+<span class="k">end program </span><span class="n">test_curve_degree_elevate</span>
+</code></pre></div>
+
+<hr>
+<p>The original curve and degree elevated curves obtained by the above test program are given as follows with their corresponding shape functions.  </p>
+<p>The curves  </p>
+<hr>
+<p><img alt="Figure 5.37(a)" src="..\media/img/test_F5.37a.png#full">
+<img alt="Figure 5.37(b)" src="..\media/img/test_F5.37b.png#full">
+<img alt="Figure 5.37(c)" src="..\media/img/test_F5.37c.png#full">
+<img alt="Figure 5.37(d)" src="..\media/img/test_F5.37d.png#full">  </p>
+<p>Shape functions  </p>
+<hr>
+<p><img alt="Figure 5.37(a-2)" src="..\media/img/test_F5.37a2.png#full">
+<img alt="Figure 5.37(b-2)" src="..\media/img/test_F5.37b2.png#full">
+<img alt="Figure 5.37(c-2)" src="..\media/img/test_F5.37c2.png#full">
+<img alt="Figure 5.37(d-2)" src="..\media/img/test_F5.37d2.png#full"></p>
+<p><strong>2)</strong> The second test</p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_surface_degree_elevate</span>
+
+<span class="k">use </span><span class="n">splines</span>
+<span class="k">use </span><span class="n">points</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">wp</span>  <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">307</span><span class="p">)</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">T</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">F</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="k">type</span><span class="p">(</span><span class="n">surface</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="n">s3</span><span class="p">,</span><span class="n">s4</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">scp</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">V</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">scp</span><span class="p">(:)%</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]</span>
+<span class="n">scp</span><span class="p">(:)%</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">scp</span><span class="p">(:)%</span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="mf">3.0</span><span class="p">,</span>  <span class="mf">3.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">3.0</span><span class="p">,</span>  <span class="mf">3.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">]</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.50_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">]</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="nb">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">kXi</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">kEta</span><span class="o">=</span><span class="n">V</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="n">scp</span><span class="p">)</span>
+
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">Plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.38a&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+<span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set colorsequence classic&quot;</span><span class="p">,</span><span class="s2">&quot;set view ,120&quot;</span><span class="p">],</span>      <span class="p">&amp;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(a). The original (cubic x quadratic) surface net, the surface defined over &amp;</span>
+<span class="s2">                     &amp; U = \\{0, 0, 0, 0, 1, 1, 1, 1\\}, and V = \\{0, 0, 0, 0.5, 1, 1, 1\\}.&quot;</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="s2">&quot;surfdeg_elevate&quot;</span>   <span class="p">)</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span>
+<span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">1</span><span class="p">,</span><span class="n">tv</span><span class="o">=+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">Plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.38b&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+<span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set colorsequence classic&quot;</span><span class="p">,</span><span class="s2">&quot;set view ,120&quot;</span><span class="p">],</span>      <span class="p">&amp;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(b). The degree elevated by one in both directions&quot;</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="s2">&quot;surfdeg_elevate&quot;</span>   <span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s</span>
+<span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">2</span><span class="p">,</span><span class="n">tv</span><span class="o">=+</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">Plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.38c&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+<span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set colorsequence classic&quot;</span><span class="p">,</span><span class="s2">&quot;set view ,120&quot;</span><span class="p">],</span>      <span class="p">&amp;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(c). The degree elevated by two in both directions&quot;</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="s2">&quot;surfdeg_elevate&quot;</span>   <span class="p">)</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">s</span>
+<span class="k">call </span><span class="n">s3</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">3</span><span class="p">,</span><span class="n">tv</span><span class="o">=+</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">call </span><span class="n">s3</span><span class="p">%</span><span class="n">Plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.38d&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+<span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set colorsequence classic&quot;</span><span class="p">,</span><span class="s2">&quot;set view ,120&quot;</span><span class="p">],</span>      <span class="p">&amp;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(d). The degree by three in the u-direction, by four in the v-direction&quot;</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="s2">&quot;surfdeg_elevate&quot;</span>   <span class="p">)</span>
+
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s</span>
+<span class="k">call </span><span class="n">s4</span><span class="p">%</span><span class="n">ChangeDegree</span><span class="p">(</span><span class="n">tu</span><span class="o">=+</span><span class="mi">6</span><span class="p">,</span><span class="n">tv</span><span class="o">=+</span><span class="mi">7</span><span class="p">)</span>
+<span class="k">call </span><span class="n">s4</span><span class="p">%</span><span class="n">Plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F5.38e&quot;</span><span class="p">,</span>    <span class="p">&amp;</span>
+<span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set colorsequence classic&quot;</span><span class="p">,</span><span class="s2">&quot;set view ,120&quot;</span><span class="p">],</span>      <span class="p">&amp;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Figure 5.37(e). The degree elevated by six in the u direction, by seven in the v direction&quot;</span><span class="p">,</span> <span class="n">work</span><span class="o">=</span><span class="s2">&quot;surfdeg_elevate&quot;</span>   <span class="p">)</span>
+
+<span class="k">pause</span>
+<span class="k">end program </span><span class="n">test_surface_degree_elevate</span>
+</code></pre></div>
+
+<p>The original surface and degree elevated surface obtained by the above test program  are given as follows.  </p>
+<hr>
+<p><img alt="Figure 5.38(a)" src="..\media/img/test_F5.38a.png#full">
+<img alt="Figure 5.38(b)" src="..\media/img/test_F5.38b.png#full">
+<img alt="Figure 5.38(c)" src="..\media/img/test_F5.38c.png#full">
+<img alt="Figure 5.38(d)" src="..\media/img/test_F5.38d.png#full"><br>
+<img alt="Figure 5.38(e)" src="..\media/img/test_F5.38e.png#full">  </p>
+    </div>
+    
+    <div class="col-md-3 col-md-pull-9">
+      <hr class="visible-xs visible-sm">
+        <div class="well toc">
+          <ul class="nav nav-stacked nav-pills">
+            <li role="presentation" class="title"><a href='..\page\index.html'>Documentation</a></li>
+          </ul>
+          <hr>
+          <ul class="nav nav-stacked nav-pills">
+            
+            <li role="presentation">
+            <a href='..\page\.\01.testPoint.html'>Point Calculation</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\02.testDerivs.html'>Calculation of the Derivatives</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\03.testInsertKnot.html'>Knot Insertion</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\04.testRefineKnotVect.html'>Knot Vector Refinement</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\05.testDecompose.html'>Decomposing into Bézier form</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\06.testRemoveKnot.html'>Knot Removal</a>
+            
+            </li>
+            
+            <li role="presentation" class="disabled">
+            <a href='..\page\.\07.testDegreeOperations.html'>Degree Operations</a>
+            
+            </li>
+            
+          </ul>
+        </div>
+    </div>
+    
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2022 
+                                          </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> B-spline Basis Function Library was developed by Enes Tunca</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="B-spline Basis Function Library">
+    
+    <meta name="author" content="Enes Tunca" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>Point Calculation &ndash; B-spline Basis Function Library</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">B-spline Basis Function Library </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li><a href='..\page\index.html'>Documentation</a></li>
+      
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+        
+            </ul>
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  <div class="row">
+    <h1>Point Calculation</h1>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="well well-sm" style="min-height: 40px;">
+      <ul class="list-inline" style="margin-bottom:0px; display:inline">
+         
+         
+<!--
+        
+-->
+      </ul>
+        <ol class="breadcrumb in-well">
+      
+         <li><a href='..\page\index.html'>Documentation</a></li>
+      
+         <li class="active">Point Calculation</li>
+      </ol>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-9 col-md-push-3" id='text'>
+      <h2 id="test-cases-for-the-procedures-point-and-pointthruinsertion">Test Cases for the Procedures <code>Point</code> and <code>PointThruInsertion</code></h2>
+<p><strong>1)</strong> The first test of the point calculation algorithms is the case given in <em>The NURBS Book</em>'s <strong>Figure 4.2-4.3</strong>.</p>
+<p><img alt="Figure 4.2" src="..\media/img/img_F4.2.png#medium"><br>
+<img alt="Figure 4.3" src="..\media/img/img_F4.3.png#large"></p>
+<p>The following program tests the point calculation algorithms for curves by reproducing these plots.  </p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_curvepoint</span>
+
+<span class="k">use </span><span class="n">splines</span>
+<span class="k">use </span><span class="n">points</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">wp</span>  <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">307</span><span class="p">)</span>
+<span class="k">type</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span> <span class="kd">::</span> <span class="n">crv</span><span class="p">,</span> <span class="n">ratcrv</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">point</span><span class="p">,</span> <span class="n">a</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">p1</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">),</span> <span class="n">p2</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c">! control points</span>
+<span class="n">a</span><span class="p">(:)%</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">];</span> <span class="n">a</span><span class="p">(:)%</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]</span>
+<span class="c">! knot vector</span>
+<span class="n">U</span><span class="p">(:)</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">0.25_wp</span><span class="p">,</span><span class="mf">0.50_wp</span><span class="p">,</span><span class="mf">0.75_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">]</span>
+
+<span class="c">! construct a nonrational curve</span>
+<span class="n">crv</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">kXi</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="n">a</span> <span class="p">)</span>
+
+<span class="c">! plot the curve with control polygon by marking all values of the knot vector over the curve</span>
+<span class="k">call </span><span class="n">crv</span><span class="p">%</span><span class="n">plot</span><span class="p">(</span><span class="n">plotCP</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="n">labelCP</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="n">plotElems</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span>    <span class="p">&amp;</span>
+                <span class="n">terminal</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>                     <span class="p">&amp;</span>
+                <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F4.2a&quot;</span><span class="p">,</span>                 <span class="p">&amp;</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;A nonrational cubic B-spline curve, {/symbol w}_{3} = 1&quot;</span><span class="p">)</span>
+
+<span class="c">! plot basis functions</span>
+<span class="k">call </span><span class="n">crv</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span>   <span class="n">terminal</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>     <span class="p">&amp;</span>
+                        <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F4.3a&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+                        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Basis functions of the nonrational cubic curve, {/symbol w}_{3} = 1&quot;</span><span class="p">)</span>
+
+<span class="c">! weights w_3=0.3</span>
+<span class="k">call </span><span class="n">a</span><span class="p">(:)%</span><span class="n">weighting</span><span class="p">([</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">0.3_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">])</span>
+
+<span class="c">! construct a rational curve by setting the rational flag to `true`</span>
+<span class="n">ratcrv</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">kXi</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="n">a</span> <span class="p">,</span><span class="n">rat</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+
+<span class="c">! plot the curve with control polygon by marking all values of the knot vector over the curve</span>
+<span class="k">call </span><span class="n">ratcrv</span><span class="p">%</span><span class="n">plot</span><span class="p">(</span> <span class="n">plotCP</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="n">labelCP</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="n">plotElems</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span>    <span class="p">&amp;</span>
+                    <span class="n">terminal</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>                     <span class="p">&amp;</span>
+                    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F4.2b&quot;</span><span class="p">,&amp;</span>
+                    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;A rational cubic B-spline curve, {/symbol w}_{3} = 0.3&quot;</span><span class="p">)</span>
+
+<span class="c">! plot weighted basis functions</span>
+<span class="k">call </span><span class="n">ratcrv</span><span class="p">%</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">plot</span><span class="p">(</span><span class="n">rat</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="n">w</span><span class="o">=</span><span class="n">a</span><span class="p">(:)%</span><span class="n">w</span><span class="p">,</span>               <span class="p">&amp;</span>
+                        <span class="n">terminal</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>                     <span class="p">&amp;</span>
+                        <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;test_F4.3b&quot;</span><span class="p">,</span>                 <span class="p">&amp;</span>
+                        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Basis functions of the nonrational cubic curve, {/symbol w}_{3} = 0.3&quot;</span><span class="p">)</span>
+
+<span class="c">! compute the coordinates of the nonrational curve coinciding the knot value &quot;0.5&quot;  </span>
+<span class="k">call </span><span class="n">crv</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">0.5_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">)</span>  
+
+<span class="c">! check values and compare with the plot</span>
+<span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">point</span><span class="p">%</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="p">%</span><span class="n">y</span>  
+<span class="c">! =&gt;    2.50000000000000    0.383333325386047</span>
+
+<span class="c">! compute the coordinates of the rational curve coinciding the knot value &quot;0.5&quot;</span>
+<span class="k">call </span><span class="n">ratcrv</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">0.5_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">)</span>  
+
+<span class="c">! check values from the plot</span>
+<span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">point</span><span class="p">%</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="p">%</span><span class="n">y</span>  
+<span class="c">! =&gt;    3.15625000000000    0.718749985098839</span>
+
+<span class="c">! test if curve%point and curve%pointThruInsertion are return the same results</span>
+<span class="k">call </span><span class="n">crv</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span>               <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.25_wp</span><span class="p">,</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="mf">0.75_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">],</span> <span class="n">PT</span><span class="o">=</span><span class="n">p1</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>  
+<span class="k">call </span><span class="n">crv</span><span class="p">%</span><span class="n">PointThruInsertion</span><span class="p">(</span>  <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.25_wp</span><span class="p">,</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="mf">0.75_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">],</span> <span class="n">PT</span><span class="o">=</span><span class="n">p2</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>  
+<span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">p1</span><span class="o">==</span><span class="n">p2</span>  
+<span class="c">! =&gt; T T T T T</span>
+
+<span class="k">call </span><span class="n">ratcrv</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span>               <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.25_wp</span><span class="p">,</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="mf">0.75_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">],</span> <span class="n">PT</span><span class="o">=</span><span class="n">p1</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>  
+<span class="k">call </span><span class="n">ratcrv</span><span class="p">%</span><span class="n">PointThruInsertion</span><span class="p">(</span>  <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.25_wp</span><span class="p">,</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="mf">0.75_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">],</span> <span class="n">PT</span><span class="o">=</span><span class="n">p2</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>  
+<span class="k">print</span><span class="o">*</span><span class="p">,</span> <span class="n">p1</span><span class="o">==</span><span class="n">p2</span>  
+<span class="c">! =&gt; T T T T T</span>
+
+<span class="k">pause</span>
+
+<span class="k">end program </span><span class="n">test_curvepoint</span>
+</code></pre></div>
+
+<p>The program first reproduces <strong>Figure 4.2</strong> with <script type="math/tex">w_3=1</script> and <script type="math/tex">w_3=0.3</script> and <strong>Figure 4.3(a)-(b)</strong>, then computes the coordinates of marked points on the curve to compare different procedures. Besides, the <code>curve%plot</code> command uses the procedure <code>curve%point</code> internally. The resulting plots are as follow,</p>
+<hr>
+<p><img alt="Figure 4.2a" src="..\media/img/test_F4.2a.png#full">  </p>
+<hr>
+<p><img alt="Figure 4.3a" src="..\media/img/test_F4.3a.png#full">  </p>
+<hr>
+<p><img alt="Figure 4.2b" src="..\media/img/test_F4.2b.png#full">  </p>
+<hr>
+<p><img alt="Figure 4.3b" src="..\media/img/test_F4.3b.png#full">  </p>
+<hr>
+<p><strong>2)</strong> The second test of the point calculation algorithms is the case given in <em>Cottrell</em>'s <em>IGA</em> book <strong>Figure 2.15</strong>.</p>
+<p><img alt="Figure(C) 2.15" src="..\media/img/imgC_F2.15.png#large"></p>
+<p>The following program tests the point calculation algorithms for surfaces by reproducing this case.  </p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_surfacepoint</span>
+
+<span class="k">use </span><span class="n">splines</span>
+<span class="k">use </span><span class="n">points</span>
+
+<span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">wp</span>  <span class="o">=</span> <span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">307</span><span class="p">)</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kt">logical</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">F</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">type</span><span class="p">(</span><span class="n">surface</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">point</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="n">V</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">type</span><span class="p">(</span><span class="n">cpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">scp</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+
+<span class="n">scp</span><span class="p">(:)%</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span> <span class="p">,</span> <span class="mf">3.0_wp</span> <span class="p">,</span> <span class="o">-</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">3.0_wp</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0_wp</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">3.0_wp</span><span class="p">]</span>
+<span class="n">scp</span><span class="p">(:)%</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.50_wp</span><span class="p">,</span> <span class="mf">1.50_wp</span><span class="p">,</span>  <span class="mf">0.0_wp</span><span class="p">,</span>  <span class="mf">2.0_wp</span><span class="p">,</span> <span class="mf">4.0_wp</span><span class="p">,</span> <span class="mf">4.0_wp</span><span class="p">,</span>  <span class="mf">0.0_wp</span><span class="p">,</span>  <span class="mf">2.0_wp</span><span class="p">,</span> <span class="mf">5.0_wp</span><span class="p">,</span> <span class="mf">5.0_wp</span><span class="p">]</span>
+<span class="c">!scp(:)%z = [ 0.0_wp, 1.0_wp, 1.0_wp, 0.0_wp,   0.0_wp,  1.0_wp, 1.0_wp, 0.0_wp,  0.0_wp,  1.0_wp, 1.0_wp, 0.0_wp]</span>
+
+<span class="n">U</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">]</span>
+<span class="n">V</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">]</span>
+
+<span class="c">! dim is set to &quot;three&quot; since surface plots in 2D does not have good looking</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">spl</span><span class="p">(</span><span class="nb">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">kXi</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">kEta</span><span class="o">=</span><span class="n">V</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="n">scp</span><span class="p">)</span>
+
+<span class="c">! plot surface on xy plane (by set view option)</span>
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">plot</span><span class="p">(</span>  <span class="n">plotCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">labelCP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>            <span class="p">&amp;</span>
+                    <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>                 <span class="p">&amp;</span>
+                    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;testC_F2.15&quot;</span><span class="p">,</span>            <span class="p">&amp;</span>
+                    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;lw 1 lc rgb &#39;dark-grey&#39;&quot;</span><span class="p">,</span>   <span class="p">&amp;</span>
+                    <span class="n">plotOpt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;set view 0,0&quot;</span><span class="p">])</span>  
+
+<span class="c">! calculate the points at the corner of the surface  </span>
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>  
+<span class="k">call </span><span class="n">s</span><span class="p">%</span><span class="n">Point</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="n">PT</span><span class="o">=</span><span class="n">point</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>  
+
+<span class="c">! write the result on the screen</span>
+<span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">;</span> <span class="k">call </span><span class="n">point</span><span class="p">(</span><span class="n">i</span><span class="p">)%</span><span class="k">print</span><span class="p">();</span> <span class="k">end do</span>
+<span class="c">!=&gt;  0.00000  0.00000  0.00000</span>
+<span class="c">!=&gt;  3.00000  1.50000  0.00000</span>
+<span class="c">!=&gt; -2.00000  0.00000  0.00000</span>
+<span class="c">!=&gt;  3.00000  5.00000  0.00000</span>
+
+<span class="k">pause</span>
+
+<span class="k">end program </span><span class="n">test_surfacepoint</span>
+</code></pre></div>
+
+<p>The plotting  algorithm inherently calculates surface points by using the <code>surface%point</code> procedure. Computing the corner points of the surface is also testing the <code>%point</code> routine.  </p>
+<p><img alt="Figure(C) 2.15" src="..\media/img/testC_F2.15.png#full"></p>
+    </div>
+    
+    <div class="col-md-3 col-md-pull-9">
+      <hr class="visible-xs visible-sm">
+        <div class="well toc">
+          <ul class="nav nav-stacked nav-pills">
+            <li role="presentation" class="title"><a href='..\page\index.html'>Documentation</a></li>
+          </ul>
+          <hr>
+          <ul class="nav nav-stacked nav-pills">
+            
+            <li role="presentation" class="disabled">
+            <a href='..\page\.\01.testPoint.html'>Point Calculation</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\02.testDerivs.html'>Calculation of the Derivatives</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\03.testInsertKnot.html'>Knot Insertion</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\04.testRefineKnotVect.html'>Knot Vector Refinement</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\05.testDecompose.html'>Decomposing into Bézier form</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\06.testRemoveKnot.html'>Knot Removal</a>
+            
+            </li>
+            
+            <li role="presentation">
+            <a href='..\page\.\07.testDegreeOperations.html'>Degree Operations</a>
+            
+            </li>
+            
+          </ul>
+        </div>
+    </div>
+    
+  </div>
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2022 
+                                          </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> B-spline Basis Function Library was developed by Enes Tunca</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>
